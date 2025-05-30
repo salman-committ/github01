@@ -2,45 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+:root { /* Default to Dark Mode */
+  --foreground-rgb: 225, 225, 235; /* Lighter text for dark mode */
+  --background-start-rgb: 10, 5, 25; /* Deep indigo/purple */
+  --background-end-rgb: 25, 10, 50;   /* Darker violet */
 
-  /* Futuristic theme placeholders */
-  --primary-color: 0, 255, 255; /* Neon Cyan/Aqua */
-  --secondary-color: 255, 0, 255; /* Neon Magenta */
-  --accent-color: 0, 255, 0; /* Neon Green */
+  --primary-neon: 0, 255, 255; /* Cyan */
+  --secondary-neon: 255, 0, 255; /* Magenta */
+  --accent-neon: 50, 255, 50; /* Bright Green */
 
-  --text-color: var(--foreground-rgb);
-  --background-color: var(--background-start-rgb); /* Simplified for now */
+  --text-primary: rgb(var(--foreground-rgb));
+  --text-secondary: rgba(var(--foreground-rgb), 0.8);
+  --text-muted: rgba(var(--foreground-rgb), 0.6);
 
-  --gradient-start: #00FFFF; /* Neon Cyan */
-  --gradient-end: #FF00FF;   /* Neon Magenta */
+  --bg-primary: rgb(var(--background-start-rgb));
+  --bg-secondary: rgb(var(--background-end-rgb));
+  
+  --card-bg-rgb: 30, 20, 60; /* Dark purple for cards */
+  --card-border-rgb: 100, 80, 150;
+
+  --gradient-neon-start: #00FFFF; /* Cyan */
+  --gradient-neon-mid: #FF00FF;   /* Magenta */
+  --gradient-neon-end: #32FF32;   /* Bright Green */
+
+  --glass-bg-rgb: rgba(40, 30, 70, 0.5); /* Translucent dark purple for glassmorphism */
+  --glass-border-color: rgba(120, 100, 180, 0.3);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 20, 20, 30; /* Dark blueish tone */
+/* Define Light Mode variables (will be toggled with a class on <html> or <body> later) */
+.light-mode {
+  --foreground-rgb: 10, 5, 25;
+  --background-start-rgb: 240, 240, 255;
+  --background-end-rgb: 220, 220, 240;
 
-    /* Adjust dark theme colors if needed */
-    --primary-color: 0, 220, 220;
-    --secondary-color: 220, 0, 220;
-    --accent-color: 0, 220, 0;
+  --primary-neon: 0, 180, 180;
+  --secondary-neon: 180, 0, 180;
+  --accent-neon: 0, 180, 0;
+  
+  --text-primary: rgb(var(--foreground-rgb));
+  --text-secondary: rgba(var(--foreground-rgb), 0.85);
+  --text-muted: rgba(var(--foreground-rgb), 0.65);
 
-    --gradient-start: #00DDDD;
-    --gradient-end: #DD00DD;
-  }
+  --bg-primary: rgb(var(--background-start-rgb));
+  --bg-secondary: rgb(var(--background-end-rgb));
+
+  --card-bg-rgb: 255, 255, 255;
+  --card-border-rgb: 200, 200, 220;
+  
+  --gradient-neon-start: #00A0A0;
+  --gradient-neon-mid: #A000A0;
+  --gradient-neon-end: #00A000;
+
+  --glass-bg-rgb: rgba(230, 230, 250, 0.6);
+  --glass-border-color: rgba(180, 180, 220, 0.4);
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: var(--text-primary);
+  background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
+  min-height: 100vh;
 }
